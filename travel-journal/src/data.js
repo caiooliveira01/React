@@ -28,5 +28,15 @@ export default [
     endDate: "30 Aug, 2022",
     description: "The Geiranger Fjord is a fjord in the Sunnmøre region of Møre og Romsdal county, Norway. It is located entirely in the Stranda Municipality.",
     imageUrl: "https://source.unsplash.com/3PeSjpLVtLg"
+},
+{
+    id: 3,
+    title: "Hobbiton Movie Set",
+    location: "New Zealand",
+    googleMapsUrl: "https://www.google.com/maps/search/Hobbiton+Movie+Set/@-37.8649012,175.6730828,15z/data=!3m1!4b1",
+    startDate: "19 Nov, 2022",
+    endDate: "15 Dec, 2022",
+    description: "The Hobbiton Movie Set is a significant location used for The Lord of the Rings film trilogy and The Hobbit film trilogy, serving as a stand-in for the town of Hobbiton in the Shire in both trilogies.",
+    imageUrl: "https://source.unsplash.com/2_q_J2_J_DQ"
 }
 ]
