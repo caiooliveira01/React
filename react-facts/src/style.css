@@ -4,18 +4,31 @@
 }
 
 body {
-    background-color: #282D35;
     font-family: Inter, sans-serif;
 }
 
 header {
-    background-color: #21222A;
+    background-color: #fffafa;
     padding-inline: 25px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+p {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* Dark Mode */
+
+.dark {
+    background-color: #21222A;
+    color: #FFF;
+}
+
+/* ----------------------------------------------------- */
 
 .nav-logo {
     display: flex;
@@ -29,13 +42,9 @@ header {
     width: 30px;
 }
 
-.right-nav {
-    color: #DEEBF8;
-    font-weight: 600;
-}
-
 main {
-    color: #FFF;
+    background-color: #fffafa;
+    color: #282D35;
     padding: 57px 27px;
     background-image: url(./images/react-icon-large.png);
     background-repeat: no-repeat;
@@ -57,5 +66,67 @@ main h1 {
 
 .facts > li::marker {
     font-size: 1.4em;
-    color: #61DAFB;
+    color: #61dafb;
+}
+
+.toggler {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+}
+
+  /* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+  /* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    border: 1px solid #adb5bd;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 20px;
+    left: 0.27em;
+    bottom: 0.25em;
+    background-color: #adb5bd;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #282D35;
+    border: 1px solid #282D35;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #282D35;
+}
+
+input:checked + .slider:before {
+    transform: translateX(1.4em);
+    background-color: #fff;
 }

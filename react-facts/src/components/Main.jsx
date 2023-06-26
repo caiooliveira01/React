@@ -1,6 +1,6 @@
-export default function Content() {
+export default function Main({darkMode}) {
     return (
-        <main>
+        <main className={darkMode ? 'dark' : ''}> {/* Recebe o state do App (darkMode) e caso o state seja true, o className será dark */}
             <h1>
                 Fun facts about React
             </h1>
