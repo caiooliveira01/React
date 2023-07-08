@@ -1,12 +1,13 @@
 import Die from './components/Die'
-import { useState  } from 'react'
+import Clicks from './components/Clicks'
+import { useState, useEffect  } from 'react'
 import { nanoid } from 'nanoid'
-import { useEffect  } from 'react'
 import Confetti from 'react-confetti'
 
 export default function App() {
-  const [dice, setDice] = useState(allNewDice())
-  const [tenzies, setTenzies] = useState(false)
+  const [dice, setDice] = useState(allNewDice()) // Números
+  const [tenzies, setTenzies] = useState(false) // Ganhar
+  const [counter, setCounter] = useState(0) // Contador
 
   useEffect(() => {
     const allHeld = dice.every(die => die.isHeld) // Verifica se todos os isHeld são true
@@ -36,12 +37,8 @@ export default function App() {
     setDice(prevDice => prevDice.map(die => {
       return die.isHeld ? die : generateNewDie()
     }))
+    watchRolls()
   } // Caso o dado esteja selecionado, mantém-se do mesmo jeito, senão é gerado um novo
-
-  function newGame() {
-    setTenzies(false)
-    setDice(allNewDice())
-  }
 
   function holdDice(id) {
     setDice(prevDice => {
@@ -49,13 +46,23 @@ export default function App() {
         return die.id === id ? {...die, isHeld: !die.isHeld} : die
       })
     })
-  } // Altera-se apenas o isHeld, e mantém todo o resto do mesmo jeito
+  } // Altera apenas o isHeld, e mantém todo o resto do mesmo jeito
+
+  function watchRolls() {
+    setCounter(prevCounter => prevCounter + 1)
+  } // Conta os clicks
+
+  function newGame() {
+    setTenzies(false)
+    setDice(allNewDice())
+    setCounter(0)
+  }
 
   const diceElements = dice.map(die => (
     <Die 
-      key={die.id} 
-      value={die.value} 
-      held={die.isHeld} 
+      key={die.id}
+      value={die.value}
+      held={die.isHeld}
       holdDice={() => holdDice(die.id)} 
     />
   ))
@@ -63,17 +70,24 @@ export default function App() {
   return (
     <main>
       {tenzies && <Confetti />}
+
       <h1 className='title'>Tenzies</h1>
       <p className='text'>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+
       <div className='dice-container'>
         {diceElements}
       </div>
-      <button 
-        className='roll-dice' 
-        onClick={tenzies ? newGame : rollDice} 
-      >
-        {tenzies ? 'New Game' : 'Roll'}
-      </button>
+
+      <div className='final'>
+        <button
+          className='roll-dice'
+          onClick={tenzies ? newGame : rollDice} >
+          {tenzies ? 'New Game' : 'Roll'}
+        </button>
+
+        {tenzies && <Clicks atempts={counter} />}
+      </div>
+
     </main>
   )
 }
